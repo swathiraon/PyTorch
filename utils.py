@@ -39,6 +39,7 @@ def train(model, device, train_loader, optimizer, criterion,train_losses,train_a
 
   train_acc.append(100*correct/processed)
   train_losses.append(train_loss/len(train_loader))
+  return [train_acc,train_losses]
 
 def test(model, device, test_loader, criterion,test_losses,test_acc):
     model.eval()
@@ -63,6 +64,7 @@ def test(model, device, test_loader, criterion,test_losses,test_acc):
     print('Test set: Average loss: {:.4f}, Accuracy: {}/{} ({:.2f}%)\n'.format(
         test_loss, correct, len(test_loader.dataset),
         100. * correct / len(test_loader.dataset)))
+    return [test_acc,test_losses]
 
 def plot(train_losses,train_acc,test_losses,test_acc):
   fig, axs = plt.subplots(2,2,figsize=(15,10))
@@ -74,5 +76,4 @@ def plot(train_losses,train_acc,test_losses,test_acc):
   axs[0, 1].set_title("Test Loss")
   axs[1, 1].plot(test_acc)
   axs[1, 1].set_title("Test Accuracy")
-
 
